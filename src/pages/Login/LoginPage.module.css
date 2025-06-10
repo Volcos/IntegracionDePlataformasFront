@@ -1,0 +1,114 @@
+/* autoparts/client/src/pages/Login/LoginPage.module.css */
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - var(--header-height) - var(--footer-height)); /* Ajusta la altura del main */
+  padding: 2rem 1rem;
+  background-color: var(--background-color-light); /* Fondo claro de tu paleta */
+}
+
+.loginCard {
+  background-color: white;
+  padding: 3rem 2.5rem;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  text-align: center;
+  max-width: 450px;
+  width: 100%;
+}
+
+.loginTitle {
+  font-size: 2.5rem;
+  color: var(--color-dark-primary); /* Tu negro oscuro */
+  margin-bottom: 2rem;
+  font-family: var(--font-family-headings);
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Espacio entre grupos de formulario */
+}
+
+.formGroup {
+  text-align: left; /* Alinea etiquetas a la izquierda */
+}
+
+.formLabel {
+  display: block; /* La etiqueta ocupa su propia línea */
+  font-size: 1rem;
+  color: var(--text-color-primary);
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.formInput {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--color-light-neutral-dark); /* Borde con tu gris */
+  border-radius: 5px;
+  font-size: 1.1rem;
+  color: var(--text-color-primary);
+  background-color: #fcfcfc; /* Un blanco muy suave */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: var(--color-secondary-dark); /* Borde azul verdoso al enfocar */
+  box-shadow: 0 0 0 3px rgba(var(--color-secondary-dark-rgb), 0.2); /* Sombra de enfoque */
+}
+
+.submitButton {
+  background-color: var(--color-accent-orange); /* Tu naranja para el botón de envío */
+  color: var(--text-color-light);
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 1.5rem;
+  box-shadow: var(--box-shadow);
+}
+
+.submitButton:hover {
+  background-color: var(--color-accent-orange-dark); /* Tono oscuro de naranja */
+  transform: translateY(-2px);
+}
+
+.registerText {
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: var(--text-color-secondary);
+}
+
+.registerLink {
+  color: var(--color-secondary-dark); /* Tu azul verdoso para el enlace de registro */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.registerLink:hover {
+  color: var(--color-accent-orange); /* Naranja al hacer hover en "Regístrate aquí" */
+  text-decoration: underline;
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 600px) {
+  .loginCard {
+    padding: 2rem 1.5rem;
+  }
+
+  .loginTitle {
+    font-size: 2rem;
+  }
+
+  .submitButton {
+    font-size: 1.1rem;
+    padding: 0.8rem 1rem;
+  }
+}

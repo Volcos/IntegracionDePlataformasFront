@@ -1,0 +1,64 @@
+/* src/components/Header/Header.module.css */
+.header {
+  background-color: var(--color-dark-primary);
+  color: var(--text-color-light);
+  padding: 1rem 0;
+  box-shadow: var(--box-shadow);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem; /* Espaciado lateral */
+}
+
+.logo {
+  color: var(--light-text-color);
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: bold;
+  font-family: var(--font-family-headings);
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  gap: 1.8rem; /* Espaciado entre elementos de la lista */
+}
+
+.navItem {
+  /* Puedes añadir estilos específicos para cada item si es necesario */
+}
+
+.navLink {
+  color: var(--light-text-color);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navLink:hover {
+  background-color: var(--color-secondary-dark); /* Tu azul verdoso oscuro para hover */
+  color: var(--text-color-light);
+  text-decoration: none; /* Quitamos el subrayado al hacer hover */
+}
+
+.loginLink { /* Renombrado de .cartLink a .loginLink */
+  background-color: var(--color-accent-orange); /* Tu naranja para el botón de Ingresar */
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-color-light); /* Asegura que el texto sea blanco */
+}
+
+.loginLink:hover {
+  background-color: var(--color-accent-orange-dark); /* Tono oscuro del naranja para hover */
+  opacity: 0.9;
+}

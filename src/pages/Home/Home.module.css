@@ -1,0 +1,367 @@
+/* src/pages/Home/Home.module.css */
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem; /* Espaciado entre secciones */
+  padding: 2rem 0;
+}
+
+/* Sección Hero (Banner principal) */
+.heroSection {
+  background-image: url('/src/assets/images/hero-bg.jpg'); /* ¡Necesitas una imagen aquí! */
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 5rem 1rem;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative; /* Para el overlay */
+}
+
+.heroSection::before { /* Overlay oscuro para mejor legibilidad del texto */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* 50% de opacidad negra */
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative; /* Para que el contenido esté sobre el overlay */
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.heroContent h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-family-headings);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.heroContent p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.callToActionButton {
+  background-color: var(--call-to-action-color); /* Tu naranja: e89528 */
+  color: var(--text-color-light); /* Texto blanco para contraste */
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 30px; /* Bordes más redondeados */
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: var(--box-shadow);
+}
+
+.callToActionButton:hover {
+  background-color: var(--button-hover-color); 
+  transform: translateY(-2px); /* Pequeño efecto de elevación */
+}
+
+/* Sección Productos Destacados */
+.featuredProducts {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.featuredProducts h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--color-secondary-dark); /* Tu azul verdoso para los títulos de sección */
+  font-family: var(--font-family-headings);
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.productCard {
+  background-color: white; /* O puedes usar var(--color-light-neutral) */
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Para que el botón quede abajo */
+}
+
+.productCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--hover-shadow);
+}
+
+.productCard h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+  color: var(--text-color-primary); /* Tu negro muy oscuro */
+}
+
+.productCard p {
+  color: var(--text-color-secondary); /* Un gris más suave */
+  margin-bottom: 1.5rem;
+  flex-grow: 1; /* Para que el párrafo ocupe el espacio antes del botón */
+}
+
+.addToCartButton {
+  background-color: var(--color-accent-green); /* Tu verde oliva para botones de carrito */
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.addToCartButton:hover {
+  background-color: var(--color-accent-green-dark); /* Tono oscuro del verde */
+}
+
+/* Sección Sobre Nosotros */
+.aboutUsSection {
+  width: 100%;
+  max-width: 1200px;
+  background-color: white;
+  padding: 3rem;
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+  text-align: center;
+}
+
+.aboutUsSection h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-secondary-dark); /* Tu azul verdoso para los títulos de sección */
+  font-family: var(--font-family-headings);
+}
+
+.aboutUsSection p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: var(--text-color-primary);
+  margin-bottom: 2rem;
+}
+
+.learnMoreButton {
+  background-color: var(--color-secondary-dark);  /* Puedes usar tu azul verdoso aquí */
+  color: var(--text-color-light);
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.learnMoreButton:hover {
+  background-color: var(--color-secondary-dark-light);
+}
+
+/* Media Queries para Responsive Design */
+@media (max-width: 768px) {
+  .heroContent h1 {
+    font-size: 2.5rem;
+  }
+
+  .heroContent p {
+    font-size: 1.2rem;
+  }
+
+  .featuredProducts h2,
+  .aboutUsSection h2 {
+    font-size: 2rem;
+  }
+
+  .productGrid {
+    grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+  }
+
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .navList {
+    flex-wrap: wrap; /* Permite que los elementos de navegación se envuelvan */
+    justify-content: center;
+  }
+}
+
+/* src/pages/Home/Home.module.css */
+
+/* ... (Mantén todos los estilos anteriores de Home.module.css) ... */
+
+/* Estilos para la NUEVA SECCIÓN: Mayor y Detalle */
+.wholesaleRetailSection {
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 3rem;
+  position: relative; /* ¡MUY IMPORTANTE! Este es el punto de referencia para los elementos absolutos */
+  height: 400px; /* ¡DEFINIMOS LA ALTURA DEL CONTENEDOR PRINCIPAL! */
+  /* Si el contenido de texto va a ser muy alto, considera usar min-height
+     o flex-direction: column y alinear items para que el texto esté encima y luego las imágenes */
+  display: flex; /* Para ayudar a contener y centrar visualmente si fuera necesario, aunque absolute lo saca */
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem; /* Espaciado lateral para el section, no para el wrapper interno */
+}
+
+.diagonalSplitContainer {
+  width: 100%;
+  height: 100%; /* ¡Ahora ocupa el 100% de la altura del padre (.wholesaleRetailSection)! */
+  background-color: var(--color-dark-primary-light);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative; /* Esto también es importante para los clip-paths internos si tienen 'absolute' */
+  display: flex;
+  box-shadow: var(--hover-shadow);
+  z-index: 5; /* Las imágenes están debajo del texto */
+}
+
+/* Base para las secciones diagonales (no cambian, pero reconfirmamos z-index) */
+.diagonalSectionLeft,
+.diagonalSectionRight {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease;
+  background-blend-mode: multiply;
+}
+
+.diagonalSectionLeft {
+  background-color: rgba(var(--color-secondary-dark-rgb), 0.4); /* Usando RGB para la opacidad */
+  clip-path: polygon(0% 0%, 70% 0%, 30% 100%, 0% 100%);
+  z-index: 2;
+}
+
+.diagonalSectionRight {
+  background-color: rgba(var(--color-accent-green-rgb), 0.4); /* Usando RGB para la opacidad */
+  clip-path: polygon(70% 0%, 100% 0%, 100% 100%, 30% 100%);
+  z-index: 1;
+  background-position: bottom center ;
+}
+
+/* ESTILOS DEL CONTENIDO SUPERPUESTO (TEXTO Y BOTÓN) */
+.wholesaleRetailContentWrapper {
+  position: absolute; /* Sigue siendo absoluto */
+  top: 50%; /* Centrado vertical */
+  left: 50%; /* Centrado horizontal */
+  transform: translate(-50%, -50%); /* Ajuste para centrado perfecto */
+  z-index: 10; /* ¡Asegura que esté encima! */
+  text-align: center;
+  padding: 2rem;
+  max-width: 800px; /* Limita el ancho del texto y botón */
+  width: 100%; /* Ocupa el 100% del ancho del padre posicionado, hasta max-width */
+  color: var(--text-color-light); /* Asegúrate de que el texto sea blanco */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para mejor legibilidad */
+}
+
+.wholesaleRetailTitle {
+  font-size: 2.8rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-family-headings);
+}
+
+.registerButton {
+  background-color: var(--call-to-action-color); /* Tu naranja para el botón de registro */
+  color: white;
+  padding: 1rem 3rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.registerButton:hover {
+  background-color: var(--button-hover-color); /* Tono oscuro del naranja para hover */
+  transform: translateY(-3px);
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+  .wholesaleRetailSection {
+    height: auto; /* Dejar que la altura se ajuste en móviles */
+    min-height: 450px; /* O una altura mínima si lo apilas */
+    flex-direction: column; /* Apilar para centrar los elementos de forma diferente */
+    padding: 1rem;
+  }
+
+  .diagonalSplitContainer {
+    width: 100%;
+    height: 300px; /* Ajusta la altura del rectángulo en móvil si se apila */
+    position: relative; /* Lo mantenemos relativo para que ocupe espacio y luego el texto se posicione */
+    margin-bottom: 1rem; /* Espacio si el texto está encima de forma normal */
+  }
+
+  .diagonalSectionLeft,
+  .diagonalSectionRight {
+    position: relative; /* Volvemos a posicionamiento normal en móvil */
+    height: 50%; /* Cada una ocupa la mitad de la altura */
+    clip-path: none; /* Quitamos la diagonal */
+    background-color: rgba(0, 123, 255, 0.6); /* Ajusta la opacidad si prefieres */
+    background-size: cover;
+    background-position: center;
+  }
+
+  .wholesaleRetailContentWrapper {
+    position: absolute; /* Mantenemos el absoluto para que flote sobre el rectángulo */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%; /* Ajusta el ancho en móviles */
+    padding: 1rem;
+    color: white; /* Mantén el color blanco para contraste */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  }
+
+  .wholesaleRetailTitle {
+    font-size: 2rem;
+  }
+
+  .registerButton {
+    font-size: 1.2rem;
+    padding: 0.8rem 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .wholesaleRetailTitle {
+    font-size: 1.8rem;
+  }
+  .registerButton {
+    font-size: 1rem;
+  }
+}

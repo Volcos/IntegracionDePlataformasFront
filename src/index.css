@@ -1,0 +1,104 @@
+/* src/index.css */
+
+/* Reseteo básico para una base limpia */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* ======================================================================== */
+  /* PALETA DE COLORES PERSONALIZADA                    */
+  /* ======================================================================== */
+
+  /* Color Principal Oscuro (0a1818) - Para fondos oscuros, textos principales */
+  --color-dark-primary: #0a1818;
+  --color-dark-primary-light: #1f3030; /* Tono ligeramente más claro */
+  --color-dark-primary-lighter: #344848; /* Otro tono más claro */
+
+  /* Color Secundario Oscuro (174b4c) - Azul verdoso, para elementos principales o acentos */
+  --color-secondary-dark: #174b4c;
+  --color-secondary-dark-light: #2c6a6b; /* Tono más claro */
+  --color-secondary-dark-lighter: #41898a; /* Otro tono más claro */
+
+  /* Color Verde Oliva/Musgo (47622B) - Acento tierra, para botones, bordes, iconos */
+  --color-accent-green: #47622B;
+  --color-accent-green-light: #6b844a; /* Tono más claro */
+  --color-accent-green-dark: #32471f; /* Tono más oscuro */
+
+  /* Color Naranja/Marrón Cálido (e89528) - Acento vibrante, para CTA, alertas, destacados */
+  --color-accent-orange: #e89528;
+  --color-accent-orange-light: #f7a43e; /* Tono más claro */
+  --color-accent-orange-dark: #c07b22; /* Tono más oscuro */
+
+  /* Color Gris Claro/Beige (c8c0b2) - Para fondos claros, bordes sutiles, texto suave */
+  --color-light-neutral: #c8c0b2;
+  --color-light-neutral-dark: #a9a194; /* Tono ligeramente más oscuro */
+  --color-light-neutral-darker: #8b8377; /* Otro tono más oscuro */
+
+  /* ======================================================================== */
+  /* VARIABLES DE USO GENERAL                           */
+  /* ======================================================================== */
+
+  /* Colores de texto */
+  --text-color-primary: var(--color-dark-primary);
+  --text-color-secondary: var(--color-light-neutral-darker);
+  --text-color-light: white; /* Para texto sobre fondos oscuros */
+
+  /* Colores de fondo */
+  --background-color-light: var(--color-light-neutral);
+  --background-color-dark: var(--color-dark-primary);
+
+  /* Colores de acento para acciones */
+  --call-to-action-color: var(--color-accent-orange);
+  --button-hover-color: var(--color-accent-orange-dark);
+  --success-color: var(--color-accent-green); /* Útil para mensajes de éxito */
+  --error-color: #dc3545; /* Rojo estándar para errores */
+
+  /* Fuentes (mantén las que ya tenías o ajusta si prefieres) */
+  --font-family-sans-serif: 'Roboto', sans-serif;
+  --font-family-headings: 'Montserrat', sans-serif;
+
+  /* Sombras (mantén las que ya tenías) */
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --hover-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+
+    /* Alturas de layout */
+  --header-height: 60px; /* Ajusta según la altura real de tu header */
+  --footer-height: 80px; /* Ajusta según la altura real de tu footer */
+  /* Fuentes */
+  --font-family-sans-serif: 'Arial', sans-serif; /* Cambiado a Arial */
+  --font-family-headings: 'Arial', sans-serif; 
+   /* Sombras */
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --hover-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilos para el layout general de la aplicación */
+html, body, #root {
+  height: 100%;
+  /* Aquí es donde se aplica la fuente a todo el cuerpo de la página */
+  font-family: var(--font-family-sans-serif); /* Asegúrate de que esto esté aquí */
+  color: var(--text-color); /* o var(--text-color-primary) */
+  background-color: var(--light-bg); /* o var(--background-color-light) */
+}
+
+main {
+  flex-grow: 1; /* Esto hace que el main ocupe el espacio disponible, empujando el footer hacia abajo */
+  padding: 1rem 0; /* Espaciado general para el contenido */
+}
+
+/* Estilos de enlaces por defecto */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Para agregar fuentes de Google, puedes incluir esto en index.html o usar @import aquí */
+/* Por ahora, usaremos fuentes genéricas o puedes agregarlas manualmente */
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400;700&display=swap'); */

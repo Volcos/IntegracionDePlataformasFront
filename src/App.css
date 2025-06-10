@@ -1,0 +1,18 @@
+/* src/App.css */
+/* Aquí puedes añadir estilos que afecten el layout general de tu App,
+   como el espaciado entre el header, main y footer, o el ancho máximo. */
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Asegura que la aplicación ocupe al menos toda la altura de la ventana */
+}
+
+main {
+  flex-grow: 1; /* Esto hace que el contenido principal ocupe el espacio restante */
+  width: 100%;
+  max-width: 1200px; /* Ancho máximo para el contenido de tu tienda */
+  margin: 0 auto; /* Centrar el contenido */
+  padding: 1rem; /* Espaciado interno */
+  background-color: var(--background-color-light);
+}
