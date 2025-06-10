@@ -10,6 +10,7 @@ import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
 import LoginPage from './pages/Login/LoginPage'; // Importa la nueva página de Login
 import RegisterPage from './pages/Register/RegisterPage';
+import ProductsPage from './pages/Products/ProductsPage';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<LoginPage />} /> {/* Nueva ruta para la página de login */}
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/products" element={<ProductsPage />} />
             {/* Agrega más rutas aquí para futuras páginas (ej. /products, /about, /contact) */}
           </Routes>
         </main>

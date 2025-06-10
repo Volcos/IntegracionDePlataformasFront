@@ -1,0 +1,158 @@
+/* autoparts/client/src/pages/Products/ProductsPage.module.css */
+.productsContainer {
+  padding: 2rem 1rem;
+  background-color: var(--background-color-light); /* Fondo claro de tu paleta */
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.productsTitle {
+  font-size: 3rem;
+  color: var(--color-dark-primary); /* Tu negro oscuro */
+  text-align: center;
+  margin-bottom: 1rem;
+  font-family: var(--font-family-headings);
+}
+
+.productsSubtitle {
+  font-size: 1.2rem;
+  color: var(--text-color-secondary); /* Gris secundario */
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Columnas responsivas */
+  gap: 2rem; /* Espacio entre tarjetas */
+  justify-content: center; /* Centra las tarjetas si no ocupan todo el ancho */
+}
+
+.productCard {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  padding: 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.productCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--hover-shadow);
+}
+
+.productImage {
+  width: 100%; /* La imagen ocupa todo el ancho de la tarjeta */
+  max-width: 200px; /* Limita el tamaño si la imagen es muy grande */
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
+}
+
+.productName {
+  font-size: 1.5rem;
+  color: var(--color-dark-primary);
+  margin-bottom: 0.5rem;
+  font-family: var(--font-family-headings);
+}
+
+.productDescription {
+  font-size: 0.95rem;
+  color: var(--text-color-secondary);
+  margin-bottom: 1rem;
+  flex-grow: 1; /* Para que ocupe el espacio disponible y los botones se alineen abajo */
+}
+
+.productPrice {
+  font-size: 1.6rem;
+  color: var(--color-accent-orange); /* Tu naranja para el precio */
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.productActions {
+  display: flex;
+  gap: 10px; /* Espacio entre los botones */
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap; /* Para que los botones se envuelvan si no caben */
+}
+
+.detailsButton,
+.addToCartButton {
+  flex: 1; /* Para que los botones compartan el espacio equitativamente */
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  font-weight: bold;
+}
+
+.detailsButton {
+  background-color: var(--color-secondary-dark); /* Tu azul verdoso */
+  color: var(--text-color-light);
+}
+
+.detailsButton:hover {
+  background-color: var(--color-secondary-dark-light); /* Tono más claro para hover */
+  transform: translateY(-2px);
+  box-shadow: var(--box-shadow);
+}
+
+.addToCartButton {
+  background-color: var(--color-accent-green); /* Tu verde oliva */
+  color: var(--text-color-light);
+}
+
+.addToCartButton:hover {
+  background-color: var(--color-accent-green-dark); /* Tono más oscuro para hover */
+  transform: translateY(-2px);
+  box-shadow: var(--box-shadow);
+}
+
+/* Media queries para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .productsTitle {
+    font-size: 2.5rem;
+  }
+  .productsSubtitle {
+    font-size: 1.1rem;
+  }
+  .productGrid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .productsTitle {
+    font-size: 2rem;
+  }
+  .productsSubtitle {
+    font-size: 1rem;
+  }
+  .productCard {
+    padding: 1rem;
+  }
+  .productName {
+    font-size: 1.3rem;
+  }
+  .productPrice {
+    font-size: 1.4rem;
+  }
+  .detailsButton,
+  .addToCartButton {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
