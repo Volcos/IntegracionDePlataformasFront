@@ -1,9 +1,10 @@
 // autoparts/client/src/pages/Cart/CartPage.jsx
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'; // Importa Link
 import styles from './CartPage.module.css';
 
 function CartPage() {
-  // Datos de ejemplo para el carrito (en el futuro, esto vendría de un estado global o backend)
+  // Datos de ejemplo para el carrito (mantenerlos aquí por ahora)
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
@@ -28,14 +29,12 @@ function CartPage() {
     },
   ]);
 
-  // Calcular el subtotal
   const subtotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-  const taxRate = 0.19; // Ejemplo de 19% de impuesto (IVA en Chile)
+  const taxRate = 0.19;
   const taxes = subtotal * taxRate;
   const total = subtotal + taxes;
 
   const handleQuantityChange = (id, newQuantity) => {
-    // Lógica para actualizar la cantidad de un ítem en el carrito
     const updatedCart = cartItems.map(item =>
       item.id === id ? { ...item, quantity: Math.max(1, newQuantity) } : item
     );
@@ -43,7 +42,6 @@ function CartPage() {
   };
 
   const handleRemoveItem = (id) => {
-    // Lógica para eliminar un ítem del carrito
     const updatedCart = cartItems.filter(item => item.id !== id);
     setCartItems(updatedCart);
   };
@@ -88,14 +86,17 @@ function CartPage() {
               <span>${subtotal.toFixed(2)}</span>
             </div>
             <div className={styles.summaryRow}>
-              <span>IVA (19%):</span> {/* O el impuesto que aplique */}
+              <span>IVA (19%):</span>
               <span>${taxes.toFixed(2)}</span>
             </div>
             <div className={styles.summaryTotalRow}>
               <span>Total:</span>
               <span>${total.toFixed(2)}</span>
             </div>
-            <button className={styles.checkoutButton}>Proceder al Pago</button>
+            {/* CAMBIO AQUÍ: Botón "Proceder al Pago" como Link */}
+            <Link to="/checkout" className={styles.checkoutButton}>
+              Proceder al Pago
+            </Link>
           </div>
         </div>
       )}
