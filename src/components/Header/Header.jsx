@@ -18,6 +18,11 @@ function Header() {
               Ingresar {/* Texto cambiado */}
             </Link>
           </li>
+          <li className={styles.navItem}>
+            <Link to="/cart" className={`${styles.navLink} ${styles.cartIconLink}`}>
+              🛒 Carrito {/* Puedes usar un icono de carrito real si instalas una librería de iconos */}
+            </Link>
+          </li>
         </ul>
       </nav>
     </header>

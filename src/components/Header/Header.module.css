@@ -62,3 +62,20 @@
   background-color: var(--color-accent-orange-dark); /* Tono oscuro del naranja para hover */
   opacity: 0.9;
 }
+
+/* Estilos para el nuevo enlace/icono del Carrito */
+.cartIconLink {
+  background-color: var(--color-accent-green); /* Tu verde oliva para el carrito */
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-color-light); /* Asegura que el texto sea blanco */
+}
+
+.cartIconLink:hover {
+  background-color: var(--color-accent-green-dark); /* Tono oscuro del verde para hover */
+  opacity: 0.9;
+}

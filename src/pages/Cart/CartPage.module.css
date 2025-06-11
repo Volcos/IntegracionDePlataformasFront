@@ -1,0 +1,259 @@
+/* autoparts/client/src/pages/Cart/CartPage.module.css */
+.cartContainer {
+  padding: 2rem 1rem;
+  background-color: var(--background-color-light);
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cartTitle {
+  font-size: 3rem;
+  color: var(--color-dark-primary);
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: var(--font-family-headings);
+}
+
+.emptyCartMessage {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--text-color-secondary);
+  padding: 3rem;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}
+
+.cartContent {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap; /* Para que se apile en pantallas pequeñas */
+  justify-content: center;
+}
+
+.cartItemsList {
+  flex: 3; /* Ocupa 3 partes del espacio */
+  min-width: 300px; /* Ancho mínimo antes de apilar */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  padding: 1.5rem;
+}
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color-light-neutral);
+  gap: 1rem;
+}
+
+.cartItem:last-child {
+  border-bottom: none; /* No borde en el último item */
+}
+
+.itemImage {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.itemDetails {
+  flex-grow: 1; /* Ocupa el espacio restante */
+}
+
+.itemName {
+  font-size: 1.2rem;
+  color: var(--color-dark-primary);
+  margin-bottom: 0.2rem;
+  font-weight: bold;
+}
+
+.itemPriceUnit {
+  font-size: 0.9rem;
+  color: var(--text-color-secondary);
+}
+
+.itemQuantityControl {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.itemQuantityControl button {
+  background-color: var(--color-light-neutral-dark);
+  color: var(--text-color-primary);
+  border: 1px solid var(--color-light-neutral-darker);
+  border-radius: 3px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.itemQuantityControl button:hover {
+  background-color: var(--color-secondary-dark);
+  color: var(--text-color-light);
+  border-color: var(--color-secondary-dark);
+}
+
+.quantityInput {
+  width: 50px;
+  text-align: center;
+  border: 1px solid var(--color-light-neutral-dark);
+  border-radius: 3px;
+  padding: 0.3rem;
+  font-size: 1rem;
+}
+
+.itemSubtotal {
+  font-size: 1.2rem;
+  color: var(--color-accent-orange);
+  font-weight: bold;
+  min-width: 80px; /* Para alinear los subtotales */
+  text-align: right;
+}
+
+.removeItemButton {
+  background-color: transparent;
+  color: #dc3545; /* Color rojo de error */
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  padding: 5px; /* Para que sea más fácil hacer clic */
+}
+
+.removeItemButton:hover {
+  color: #c82333;
+}
+
+/* Resumen del Carrito */
+.cartSummary {
+  flex: 1; /* Ocupa 1 parte del espacio */
+  min-width: 280px; /* Ancho mínimo antes de apilar */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: fit-content; /* Para que no ocupe toda la altura si la lista es corta */
+  position: sticky; /* Para que se mantenga visible al hacer scroll */
+  top: 2rem; /* Ajusta la posición pegajosa */
+}
+
+.summaryTitle {
+  font-size: 1.8rem;
+  color: var(--color-dark-primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-family: var(--font-family-headings);
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+  color: var(--text-color-primary);
+}
+
+.summaryTotalRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-light-neutral-dark);
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-dark-primary);
+}
+
+.checkoutButton {
+  background-color: var(--color-accent-green); /* Tu verde oliva para checkout */
+  color: var(--text-color-light);
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 1.5rem;
+  box-shadow: var(--box-shadow);
+}
+
+.checkoutButton:hover {
+  background-color: var(--color-accent-green-dark);
+  transform: translateY(-2px);
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+  .cartContent {
+    flex-direction: column; /* Apila la lista de ítems y el resumen */
+    align-items: center;
+  }
+
+  .cartItemsList,
+  .cartSummary {
+    width: 100%;
+    max-width: 600px; /* Limita el ancho en pantallas medianas */
+  }
+
+  .cartSummary {
+    position: relative; /* Quita el sticky en pantallas pequeñas */
+    top: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .cartTitle {
+    font-size: 2.2rem;
+  }
+  .cartItem {
+    flex-wrap: wrap; /* Permite que los elementos del item se envuelvan */
+    justify-content: center;
+    text-align: center;
+  }
+  .itemDetails,
+  .itemQuantityControl,
+  .itemSubtotal,
+  .removeItemButton {
+    min-width: unset; /* Elimina anchos mínimos para mejor adaptación */
+  }
+  .itemDetails {
+    order: 2; /* Cambia el orden para que los detalles queden debajo de la imagen */
+    margin-top: 0.5rem;
+  }
+  .itemImage {
+    order: 1;
+  }
+  .itemQuantityControl {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+  .itemSubtotal {
+    order: 4;
+    width: 100%;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+  .removeItemButton {
+    order: 5;
+    position: absolute; /* Para que la X de eliminar esté en la esquina */
+    top: 5px;
+    right: 5px;
+  }
+  .cartItem {
+    position: relative; /* Para el posicionamiento absoluto del botón X */
+  }
+}
