@@ -1,0 +1,202 @@
+/* autoparts/client/src/pages/Checkout/CheckoutPage.module.css */
+.checkoutContainer {
+  padding: 2rem 1rem;
+  background-color: var(--background-color-light);
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.checkoutTitle {
+  font-size: 3rem;
+  color: var(--color-dark-primary);
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: var(--font-family-headings);
+}
+
+.checkoutContent {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap; /* Permite que las secciones se apilen */
+  justify-content: center;
+  align-items: flex-start; /* Alinea los elementos al inicio (arriba) */
+}
+
+/* Estilo base para las tarjetas (resumen, dirección, pago) */
+.orderSummaryCard,
+.shippingAddressCard,
+.paymentSummaryCard {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+  flex: 1; /* Permite que crezcan y se encojan */
+  min-width: 300px; /* Ancho mínimo antes de apilar */
+  max-width: 100%; /* Asegura que no se desborden */
+}
+
+.summarySectionTitle {
+  font-size: 1.8rem;
+  color: var(--color-dark-primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-family: var(--font-family-headings);
+}
+
+/* Estilos para el resumen de productos */
+.orderSummaryCard {
+  flex: 2; /* Puede ser más ancho que los otros si hay muchos productos */
+}
+
+.orderItemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.orderItem {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  color: var(--text-color-primary);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed var(--color-light-neutral);
+}
+
+.orderItem:last-child {
+  border-bottom: none;
+}
+
+/* Estilos para el formulario de dirección de despacho (reusa estilos de Login/Register) */
+.shippingAddressCard {
+  flex: 2; /* También puede ser ancho */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Espacio entre los grupos de formulario */
+}
+
+.shippingForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem; /* Espacio entre los campos del formulario */
+}
+
+.formGroup {
+  text-align: left;
+}
+
+.formLabel {
+  display: block;
+  font-size: 1rem;
+  color: var(--text-color-primary);
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.formInput {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--color-light-neutral-dark);
+  border-radius: 5px;
+  font-size: 1.1rem;
+  color: var(--text-color-primary);
+  background-color: #fcfcfc;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: var(--color-secondary-dark);
+  box-shadow: 0 0 0 3px rgba(var(--color-secondary-dark-rgb), 0.2);
+}
+
+textarea.formInput {
+  resize: vertical; /* Permite redimensionar verticalmente */
+  min-height: 80px;
+}
+
+/* Estilos para el resumen de pago */
+.paymentSummaryCard {
+  flex: 1; /* Más compacto, ocupa menos espacio */
+  position: sticky; /* Se mantiene al hacer scroll */
+  top: 2rem; /* Distancia desde arriba */
+  height: fit-content; /* Se ajusta a su contenido */
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+  color: var(--text-color-primary);
+}
+
+.summaryTotalRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-light-neutral-dark);
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-dark-primary);
+}
+
+.confirmPayButton {
+  background-color: var(--color-accent-orange); /* Tu naranja para el botón de pago */
+  color: var(--text-color-light);
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 1.5rem;
+  box-shadow: var(--box-shadow);
+  width: 100%; /* Ocupa todo el ancho */
+}
+
+.confirmPayButton:hover {
+  background-color: var(--color-accent-orange-dark);
+  transform: translateY(-2px);
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 992px) {
+  .checkoutContent {
+    flex-direction: column; /* Apila todas las tarjetas en pantallas medianas */
+    align-items: center; /* Centra las tarjetas apiladas */
+  }
+
+  .orderSummaryCard,
+  .shippingAddressCard,
+  .paymentSummaryCard {
+    width: 100%;
+    max-width: 600px; /* Limita el ancho en pantallas medianas */
+  }
+
+  .paymentSummaryCard {
+    position: relative; /* Quita el sticky en pantallas pequeñas */
+    top: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .checkoutTitle {
+    font-size: 2.2rem;
+  }
+  .orderSummaryCard,
+  .shippingAddressCard,
+  .paymentSummaryCard {
+    padding: 1.5rem;
+  }
+  .summarySectionTitle {
+    font-size: 1.5rem;
+  }
+  .confirmPayButton {
+    font-size: 1.1rem;
+    padding: 0.8rem 1rem;
+  }
+}

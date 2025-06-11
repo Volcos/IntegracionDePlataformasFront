@@ -1,0 +1,274 @@
+/* autoparts/client/src/pages/WarehouseInventory/WarehouseInventoryPage.module.css */
+.inventoryContainer {
+  padding: 2rem 1rem;
+  background-color: var(--background-color-light);
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.inventoryTitle {
+  font-size: 3rem;
+  color: var(--color-dark-primary);
+  text-align: center;
+  margin-bottom: 1rem;
+  font-family: var(--font-family-headings);
+}
+
+.inventorySubtitle {
+  font-size: 1.2rem;
+  color: var(--text-color-secondary);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.inventoryTableWrapper {
+  overflow-x: auto; /* Permite desplazamiento horizontal en pantallas pequeñas */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  padding: 1rem;
+  /* position: relative;  Necesario si hay sticky headers/columns complejos */
+}
+
+.inventoryTable {
+  width: 100%;
+  border-collapse: collapse; /* Elimina espacio entre bordes de celdas */
+  text-align: left;
+  min-width: 700px; /* Asegura que la tabla tenga un ancho mínimo para el scroll */
+}
+
+.inventoryTable th,
+.inventoryTable td {
+  padding: 12px 15px;
+  border: 1px solid var(--color-light-neutral); /* Bordes para claridad en la tabla */
+  vertical-align: middle; /* Alinea contenido en el medio verticalmente */
+}
+
+.inventoryTable th {
+  background-color: var(--color-secondary-dark); /* Fondo azul verdoso para encabezados */
+  color: var(--text-color-light);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  position: sticky; /* Sticky headers */
+  top: 0;
+  z-index: 2; /* Para que esté sobre el contenido al hacer scroll */
+}
+
+/* Estilo para la cabecera de la fila de sedes */
+.branchHeaderRow {
+  background-color: var(--color-secondary-dark-light); /* Tono más claro para la fila de sedes */
+  color: var(--text-color-light);
+}
+
+.branchNameHeader {
+  background-color: var(--color-secondary-dark-lighter); /* Tono aún más claro para cada nombre de sede */
+  position: sticky; /* Para que los nombres de las sedes se peguen también */
+  top: 48px; /* Ajusta este valor si tu primer TH es más alto (rowSpan=2) */
+  z-index: 2;
+}
+
+/* Columna pegajosa para el nombre del producto */
+.stickyColumn {
+  position: sticky;
+  left: 0;
+  background-color: white; /* Asegura que el fondo sea blanco al hacer scroll */
+  z-index: 3; /* Para que esté sobre otras celdas */
+  box-shadow: 2px 0 5px rgba(0,0,0,0.05); /* Sombra para indicar que es pegajoso */
+}
+/* Asegura que el th del producto también sea pegajoso */
+.inventoryTable thead tr:first-child th:first-child {
+  z-index: 4; /* Mayor z-index para la esquina superior izquierda */
+}
+
+
+.inventoryTable tbody tr:hover {
+  background-color: #f8f8f8; /* Fondo más claro al pasar el ratón */
+}
+
+/* Estilo para celdas con bajo stock */
+.lowStockCell {
+  background-color: rgba(255, 99, 71, 0.1); /* Rojo tenue para bajo stock */
+  font-weight: bold;
+}
+
+.lowStockCell .stockValue {
+  color: #dc3545; /* Color del texto de stock en rojo */
+}
+
+
+.productCell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.productThumbnail {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+/* Controles de stock (valor + botones) */
+.stockControl {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.stockValue {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text-color-primary);
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Espacio entre stock y alerta */
+}
+
+.stockButtons {
+  display: flex;
+  gap: 5px;
+}
+
+.stockButton {
+  background-color: var(--color-light-neutral-dark);
+  color: var(--text-color-primary);
+  border: 1px solid var(--color-light-neutral-darker);
+  border-radius: 5px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.stockButton:hover:not(:disabled) {
+  background-color: var(--color-secondary-dark);
+  color: var(--text-color-light);
+  border-color: var(--color-secondary-dark);
+}
+
+.stockButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+.lowStockAlert {
+  background-color: #dc3545; /* Rojo brillante para la alerta */
+  color: white;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  animation: pulse 1s infinite alternate; /* Animación de pulsación */
+}
+
+/* Animación para la alerta de bajo stock */
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+.legend {
+  margin-top: 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  color: var(--text-color-primary);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legendColorBoxLow {
+  width: 20px;
+  height: 20px;
+  background-color: rgba(255, 99, 71, 0.1);
+  border: 1px solid #dc3545;
+  border-radius: 3px;
+}
+
+.legendColorBoxOk {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border: 1px solid var(--color-light-neutral-dark);
+  border-radius: 3px;
+}
+
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+  .inventoryTitle {
+    font-size: 2.5rem;
+  }
+  .inventorySubtitle {
+    font-size: 1.1rem;
+  }
+  .inventoryTable th,
+  .inventoryTable td {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+  .productThumbnail {
+    width: 40px;
+    height: 40px;
+  }
+  .stockValue {
+    font-size: 1rem;
+  }
+  .stockButton {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
+  .inventoryTable {
+    min-width: unset; /* Permite que la tabla sea más estrecha si es necesario */
+  }
+  .stickyColumn {
+    box-shadow: none; /* Elimina sombra pegajosa en móviles si la columna deja de ser muy útil */
+  }
+}
+
+@media (max-width: 480px) {
+  .inventoryTitle {
+    font-size: 2rem;
+  }
+  .inventorySubtitle {
+    font-size: 1rem;
+  }
+  .inventoryTable th,
+  .inventoryTable td {
+    padding: 8px;
+  }
+  .lowStockAlert {
+    font-size: 0.6rem;
+    padding: 3px 6px;
+  }
+  .legend {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
