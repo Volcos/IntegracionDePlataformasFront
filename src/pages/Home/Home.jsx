@@ -16,7 +16,7 @@ function Home() {
         style={{ backgroundImage: `url(${heroBgImage})` }}
       >
         <div className={styles.heroContent}>
-          <h1>Encuentra las autopartes que necesitas</h1>
+          <h1>Encuentra los repuestos que necesitas</h1>
           <p>Amplia selección de repuestos de alta calidad para tu vehículo.</p>
           <button className={styles.callToActionButton}>Explorar Productos</button>
         </div>
