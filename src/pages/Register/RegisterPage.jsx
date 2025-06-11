@@ -2,19 +2,37 @@
 import React, { useState } from 'react'; // Necesitamos useState para manejar la selección de tipo de usuario
 import { Link } from 'react-router-dom';
 import styles from './RegisterPage.module.css'; // Estilos específicos de la página de Registro
+import axios from 'axios';
+import { configDotenv } from 'dotenv';
+
 
 function RegisterPage() {
-  // Estado para guardar la selección de tipo de usuario (0 para persona, 1 para empresa)
-  const [userType, setUserType] = useState(0); // Por defecto, 'Soy una persona'
+  const [userType, setUserType] = useState(0); 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí es donde en el futuro manejarías el envío de datos
-    // Por ahora, solo puedes ver el tipo de usuario seleccionado en la consola:
-    console.log("Tipo de usuario seleccionado:", userType === 0 ? "Persona" : "Empresa");
-    alert("¡Registro enviado! (Los datos aún no se almacenan)");
-    // Puedes acceder a los valores de los campos del formulario si lo necesitas,
-    // pero por ahora solo el tipo de usuario está en el estado.
+
+    const formData = new FormData(e.target);
+
+    
+    const data = {
+      nombre: formData.get('name'),
+      rut: formData.get('rut'),
+      telefono: formData.get('phone'),
+      email: formData.get('email'),
+      direccion: formData.get('address'),
+      contrasena: formData.get('password'),
+      id_tipo_cliente: userType === 0 ? 1 : 2, 
+    };
+
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/crearUsuario`, data);
+      console.log('Respuesta del servidor:', response.data);
+      alert('¡Usuario registrado exitosamente!');
+    } catch (error) {
+      console.error('Error al registrar usuario:', error);
+      alert('Ocurrió un error al registrar el usuario.');
+    }
   };
 
   return (
@@ -121,7 +139,7 @@ function RegisterPage() {
             />
           </div>
 
-          {/* Campo Confirmar Contraseña (recomendado) */}
+          {/* Campo Confirmar Contraseña (recomendado) handleSubmit */}
           <div className={styles.formGroup}>
             <label htmlFor="confirmPassword" className={styles.formLabel}>Confirmar Contraseña</label>
             <input

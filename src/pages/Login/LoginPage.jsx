@@ -2,13 +2,42 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Para el enlace "Regístrate aquí"
 import styles from './LoginPage.module.css'; // Estilos específicos de la página de Login
-
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 function LoginPage() {
+
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const credentials = {
+      email: formData.get('email'),
+      contrasena: formData.get('password'),
+    };
+
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/buscarUsuario`, {email:'vargasbenjamin847@gmail.com',contrasena:'Pato123'});
+      const token = response.data.token;
+
+      localStorage.setItem('token', token);
+
+      alert('Inicio de sesión exitoso');
+
+      navigate('/'); 
+    } catch (error) {
+      console.error('Error de inicio de sesión:', error);
+      alert('Correo o contraseña incorrectos');
+    }
+  };
+
+
   return (
     <div className={styles.loginContainer}>
       <div className={styles.loginCard}>
         <h1 className={styles.loginTitle}>Ingresar</h1>
-        <form className={styles.loginForm}>
+        <form className={styles.loginForm} on onSubmit={handleLogin}>
           <div className={styles.formGroup}>
             <label htmlFor="email" className={styles.formLabel}>Correo Electrónico</label>
             <input
