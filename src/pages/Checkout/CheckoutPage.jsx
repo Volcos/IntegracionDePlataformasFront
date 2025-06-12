@@ -9,10 +9,10 @@ function PayButton({ idCompra, idUsuario, montoTotal, shippingAddress }) {
       localStorage.setItem('direccion', JSON.stringify(shippingAddress));
       localStorage.setItem('carritoId', idCompra);
 
-      const resp = await axios.post('/api/generarPedido', {idCompra});
+      
 
       const response = await axios.post('/api/pagar', {
-        id_compra: resp.id_pedido,
+        id_compra: 1234,
         id_usuario: idUsuario,
         monto_total: montoTotal
       }, {
@@ -68,7 +68,7 @@ function CheckoutPage() {
 
         const carritoID = carritoRes.data[0]?.ID_CARRITO;
         setCarritoId(carritoID);
-
+        console.log(localStorage);
         const productosRes = await axios.get('/api/devolverProductosCarrito', {
           params: { id_carrito: carritoID }
         });
