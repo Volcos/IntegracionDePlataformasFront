@@ -16,9 +16,11 @@ function LoginPage() {
       email: formData.get('email'),
       contrasena: formData.get('password'),
     };
+    console.log(credentials.email)
+    console.log(credentials.contrasena)
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/buscarUsuario`, {email:email,contrasena:contrasena});
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/buscarUsuario`, {email:credentials.email,contrasena:credentials.contrasena});
       const token = response.data.token;
 
       localStorage.setItem('token', token);
