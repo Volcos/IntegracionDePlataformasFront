@@ -26,7 +26,7 @@ function RetornoWebpay() {
           if (resp.data.success) {
             console.log('id del pedido: '+resp.data.id_pedido);
             console.log('direccion: '+direccionStr);
-            await axios.post('http://192.168.59.174:3000/ingresarDireccion', {
+            await axios.post('/api/ingresarDireccion', {
               id_pedido: resp.data.id_pedido,
               direccion: direccionStr
             });
