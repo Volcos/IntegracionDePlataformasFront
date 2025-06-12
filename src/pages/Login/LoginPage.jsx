@@ -18,7 +18,7 @@ function LoginPage() {
     };
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/buscarUsuario`, {email:'vargasbenjamin847@gmail.com',contrasena:'Pato123'});
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/buscarUsuario`, {email:email,contrasena:contrasena});
       const token = response.data.token;
 
       localStorage.setItem('token', token);

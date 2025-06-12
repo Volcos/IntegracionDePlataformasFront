@@ -6,6 +6,8 @@ import axios from 'axios';
 import { configDotenv } from 'dotenv';
 
 
+
+
 function RegisterPage() {
   const [userType, setUserType] = useState(0); 
 
@@ -22,9 +24,9 @@ function RegisterPage() {
       email: formData.get('email'),
       direccion: formData.get('address'),
       contrasena: formData.get('password'),
-      id_tipo_cliente: userType === 0 ? 1 : 3, 
+      id_tipo_cliente: userType === setUserType(0 ? 1 : 3), 
     };
-
+    console.log(userType);
     try {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/crearUsuario`, data);
       console.log('Respuesta del servidor:', response.data);
