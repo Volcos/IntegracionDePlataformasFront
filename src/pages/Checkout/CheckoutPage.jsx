@@ -126,7 +126,7 @@ function CheckoutPage() {
         <div className={styles.shippingAddressCard}>
           <h2 className={styles.summarySectionTitle}>Dirección de Despacho</h2>
           <form className={styles.shippingForm}>
-            {['street', 'number', 'apartment', 'commune', 'city', 'region', 'postalCode'].map((field, i) => (
+            {['Calle', 'Número', 'Departamento', 'Comuna', 'Ciudad', 'Región', 'Código postal'].map((field, i) => (
               <div key={i} className={styles.formGroup}>
                 <label htmlFor={field} className={styles.formLabel}>
                   {field === 'postalCode' ? 'Código Postal' : field.charAt(0).toUpperCase() + field.slice(1)}

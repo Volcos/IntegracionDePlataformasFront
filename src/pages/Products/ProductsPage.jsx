@@ -86,7 +86,7 @@ function ProductsPage() {
   return (
     <div className={styles.productsContainer}>
       <h1 className={styles.productsTitle}>Nuestros Productos</h1>
-      <p className={styles.productsSubtitle}>Explora nuestra amplia selección de autopartes de alta calidad.</p>
+      <p className={styles.productsSubtitle}>Explora nuestra amplia selección de productos de alta calidad.</p>
 
       <div className={styles.productGrid}>
         {productos.map(producto => (
