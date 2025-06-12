@@ -22,7 +22,7 @@ function RegisterPage() {
       email: formData.get('email'),
       direccion: formData.get('address'),
       contrasena: formData.get('password'),
-      id_tipo_cliente: userType === 0 ? 1 : 2, 
+      id_tipo_cliente: userType === 0 ? 1 : 3, 
     };
 
     try {
@@ -111,15 +111,15 @@ function RegisterPage() {
             <div className={styles.userTypeSelector}>
               <button
                 type="button" // Importante: para que no envíe el formulario
-                className={`${styles.userTypeButton} ${userType === 0 ? styles.active : ''}`}
-                onClick={() => setUserType(0)}
+                className={`${styles.userTypeButton} ${userType === 1 ? styles.active : ''}`}
+                onClick={() => setUserType(1)}
               >
                 Soy una persona
               </button>
               <button
                 type="button" // Importante: para que no envíe el formulario
-                className={`${styles.userTypeButton} ${userType === 1 ? styles.active : ''}`}
-                onClick={() => setUserType(1)}
+                className={`${styles.userTypeButton} ${userType === 3 ? styles.active : ''}`}
+                onClick={() => setUserType(3)}
               >
                 Soy una empresa
               </button>

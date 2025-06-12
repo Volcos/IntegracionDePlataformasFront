@@ -1,85 +1,52 @@
 // autoparts/client/src/pages/WarehouseInventory/WarehouseInventoryPage.jsx
-import React, { useState } from 'react';
+import React, { useState,useEffect  } from 'react';
 import styles from './WarehouseInventoryPage.module.css';
+import defaultImage from '../../assets/images/default.png';
+import axios from 'axios';
+
 
 function WarehouseInventoryPage() {
-  // Datos de stock de ejemplo por sede
-  const [inventory, setInventory] = useState([
-    {
-      id: 1,
-      name: 'Faro Delantero LED',
-      minStock: 10,
-      imageUrl: 'https://via.placeholder.com/60x60?text=Faro',
-      stockByBranch: {
-        'Sede Central': 50,
-        'Sede Norte': 12,
-        'Sede Sur': 5, // Bajo stock aquí
-      },
-    },
-    {
-      id: 2,
-      name: 'Kit de Frenos Cerámicos',
-      minStock: 8,
-      imageUrl: 'https://via.placeholder.com/60x60?text=Frenos',
-      stockByBranch: {
-        'Sede Central': 15,
-        'Sede Norte': 3, // Bajo stock aquí
-        'Sede Sur': 10,
-      },
-    },
-    {
-      id: 3,
-      name: 'Filtro de Aire Deportivo',
-      minStock: 15,
-      imageUrl: 'https://via.placeholder.com/60x60?text=Filtro',
-      stockByBranch: {
-        'Sede Central': 25,
-        'Sede Norte': 12, // Bajo stock aquí
-        'Sede Sur': 20,
-      },
-    },
-    {
-      id: 4,
-      name: 'Amortiguador Reforzado',
-      minStock: 10,
-      imageUrl: 'https://via.placeholder.com/60x60?text=Amort',
-      stockByBranch: {
-        'Sede Central': 8, // Bajo stock aquí
-        'Sede Norte': 10,
-        'Sede Sur': 12,
-      },
-    },
-  ]);
+  
+  const [inventory, setInventory] = useState([]);
 
-  // Obtener los nombres de las sedes dinámicamente de los datos de ejemplo
+  useEffect(() => {
+  const fetchInventory = async () => {
+    try {
+      const response = await axios.get('/api/inventario'); 
+      setInventory(response.data);
+    } catch (error) {
+      console.error('Error al obtener el inventario:', error);
+    }
+  };
+
+  fetchInventory();
+  }, []);
+
   const branchNames = Object.keys(inventory[0]?.stockByBranch || {});
 
-  // Función para manejar el cambio de stock
-  const handleStockChange = (productId, branchName, changeType) => {
-    setInventory(prevInventory =>
-      prevInventory.map(product => {
-        if (product.id === productId) {
-          const currentStock = product.stockByBranch[branchName];
-          let newStock = currentStock;
+  const handleStockChange = async (productId, branchName, changeType) => {
+  const product = inventory.find(p => p.id === productId);
+  if (!product) return;
 
-          if (changeType === 'add') {
-            newStock = currentStock + 1;
-          } else if (changeType === 'remove' && currentStock > 0) {
-            newStock = currentStock - 1;
-          }
+  const cantidad = 1;
+  const sucursal = branchName;
+  const producto = productId;
+  const url = changeType === 'add' ? 'agregarStock' : 'rebajarStock';
 
-          return {
-            ...product,
-            stockByBranch: {
-              ...product.stockByBranch,
-              [branchName]: newStock,
-            },
-          };
-        }
-        return product;
-      })
-    );
-  };
+  try {
+    await axios.put(`/api/${url}`, {
+      sucursal,
+      producto,
+      cantidad
+    });
+
+    const response = await axios.get('/api/inventario');
+    setInventory(response.data);
+  } catch (error) {
+    console.error(`Error al ${changeType === 'add' ? 'agregar' : 'rebajar'} stock:`, error);
+  }
+};
+
 
   return (
     <div className={styles.inventoryContainer}>

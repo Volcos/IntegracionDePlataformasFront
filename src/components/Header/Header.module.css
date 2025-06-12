@@ -79,3 +79,29 @@
   background-color: var(--color-accent-green-dark); /* Tono oscuro del verde para hover */
   opacity: 0.9;
 }
+
+/* Estilo para el botón "Cerrar sesión" */
+.logoutButton {
+  background-color: var(--color-accent-orange-dark); /* Usa un tono diferente al de Ingresar */
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  color: var(--text-color-light);
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.logoutButton:hover {
+  background-color: var(--color-accent-orange);
+  opacity: 0.9;
+}
+
+/* Estilo para mostrar el nombre del usuario */
+.userName {
+  color: var(--text-color-light);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
