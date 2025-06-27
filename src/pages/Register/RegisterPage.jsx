@@ -15,7 +15,7 @@ function RegisterPage() {
     e.preventDefault();
 
     const formData = new FormData(e.target);
-
+    
     
     const data = {
       nombre: formData.get('name'),
@@ -24,9 +24,9 @@ function RegisterPage() {
       email: formData.get('email'),
       direccion: formData.get('address'),
       contrasena: formData.get('password'),
-      id_tipo_cliente: userType === setUserType(0 ? 1 : 3), 
+      id_tipo_cliente: userType //=== setUserType(0 ? 1 : 3), 
     };
-    console.log(userType);
+    console.log(typeof(userType));
     try {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/crearUsuario`, data);
       console.log('Respuesta del servidor:', response.data);
