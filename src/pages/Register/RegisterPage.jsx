@@ -26,11 +26,16 @@ function RegisterPage() {
       contrasena: formData.get('password'),
       id_tipo_cliente: userType //=== setUserType(0 ? 1 : 3), 
     };
-    console.log(typeof(userType));
+    console.log(userType);
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/crearUsuario`, data);
-      console.log('Respuesta del servidor:', response.data);
-      alert('¡Usuario registrado exitosamente!');
+      if (userType != 0){
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/crearUsuario`, data);
+        console.log('Respuesta del servidor:', response.data);
+        alert('¡Usuario registrado exitosamente!');
+      }else{
+        alert('¡Seleccione un tipo de usuario!')
+      }
+
     } catch (error) {
       console.error('Error al registrar usuario:', error);
       alert('Ocurrió un error al registrar el usuario.');
