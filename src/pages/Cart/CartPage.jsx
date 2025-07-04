@@ -110,7 +110,8 @@ function CartPage() {
 
     const itemActual = cartItems.find(item => item.id === id_producto);
     const cantidadAnterior = itemActual?.quantity || 0;
-
+    console.log("cantidad anterior: "+ itemActual?.quantity)
+    console.log("Cantidad: "+nuevaCantidad);
     if (nuevaCantidad < 1) {
       try {
         await axios.delete('/api/rebajarCarrito', {
@@ -168,6 +169,39 @@ function CartPage() {
     }
   };
 
+  const handleSetItem = async (id_producto, cantidad) => {
+    console.log('id_producto: '+id_producto)
+    console.log('cantidad: '+cantidad)
+    console.log('id_carrito: '+carrito)
+    try {
+      if (cantidad>0){
+        await axios.put('/api/setCantidad', 
+          {
+            id_carrito: carrito,
+            id_producto: id_producto,
+            cantidad: cantidad
+          }
+        );
+      } else {
+        await axios.delete('/api/borrarDelCarrito', {
+          data: {
+            id_carrito: carrito,
+            id_producto: id_producto
+          }
+        });
+      }
+      
+      
+    } catch (e) {
+      console.log('Error al actualizar el carrito')
+    }
+  }
+  const actualization = (id_producto,cantidad)=>{
+    const actualizado = cartItems.map(item =>
+      item.id === id_producto ? { ...item, quantity: cantidad } : item
+    );
+    setCartItems(actualizado);
+  };
   const handleRemoveItem = async (id_producto) => {
     if (!carrito) return;
 
@@ -208,7 +242,8 @@ function CartPage() {
                   <input
                     type="number"
                     value={item.quantity}
-                    onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value) || 0)}
+                    onChange={(e) => actualization(item.id, e.target.value)}
+                    onBlur={(e) => handleSetItem(item.id, parseInt(e.target.value) || 0)}
                     min="1"
                     className={styles.quantityInput}
                   />
