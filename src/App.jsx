@@ -17,7 +17,8 @@ import CheckoutPage from './pages/Checkout/CheckoutPage';
 // Importa las nuevas páginas de bodeguero
 import WarehouseLoginPage from './pages/WarehouseLogin/WarehouseLoginPage';
 import WarehouseInventoryPage from './pages/WarehouseInventory/WarehouseInventoryPage';
-import PaymentSuccess from './pages/PaymentSuccess/paymentSuccessPage';
+import PaymentSuccess from './pages/PaymentSuccess/PaymentSuccessPage';
+import PaymentFail from './pages/PaymentFail/PaymentFail';
 import RetornoWebpay from './pages/RetornoWebPay/RetornoWebpay';
 function App() {
   // Estado para simular si el bodeguero está logueado
@@ -39,6 +40,7 @@ function App() {
             <Route path="/cart" element={<CartPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path='/paymentSuccess' element={<PaymentSuccess/>}/>
+            <Route path='/paymentFail' element={<PaymentFail/>}/>
             <Route path="/retorno-webpay" element={<RetornoWebpay />} />
             {/* Rutas para el Frontend de Bodegueros */}
             <Route

@@ -5,6 +5,13 @@ import axios from 'axios';
 
 function PayButton({ idCompra, idUsuario, montoTotal, shippingAddress }) {
   const handlePay = async () => {
+  const requiredFields = ['street', 'number', 'commune', 'city', 'region', 'postalCode'];
+  const emptyField = requiredFields.find(field => !shippingAddress[field] || shippingAddress[field].trim() === '');
+
+  if (emptyField) {
+    alert('Por favor completa todos los campos obligatorios antes de continuar.');
+    return;
+  }
     try {
       localStorage.setItem('direccion', JSON.stringify(shippingAddress));
       localStorage.setItem('carritoId', idCompra);
@@ -126,7 +133,16 @@ function CheckoutPage() {
         <div className={styles.shippingAddressCard}>
           <h2 className={styles.summarySectionTitle}>Dirección de Despacho</h2>
           <form className={styles.shippingForm}>
-            {['Calle', 'Número', 'Departamento', 'Comuna', 'Ciudad', 'Región', 'Código postal'].map((field, i) => (
+
+            {[
+              { field: 'street', label: 'Calle' },
+              { field: 'number', label: 'Número' },
+              { field: 'apartment', label: 'Departamento (Opcional)' },
+              { field: 'commune', label: 'Comuna' },
+              { field: 'city', label: 'Ciudad' },
+              { field: 'region', label: 'Región' },
+              { field: 'postalCode', label: 'Código postal' }
+            ].map(({ field, label }, i) => (
               <div key={i} className={styles.formGroup}>
                 <label htmlFor={field} className={styles.formLabel}>
                   {field === 'postalCode' ? 'Código Postal' : field.charAt(0).toUpperCase() + field.slice(1)}
@@ -139,7 +155,7 @@ function CheckoutPage() {
                   placeholder={`Ej: ${field === 'number' ? '742' : field === 'postalCode' ? '7550000' : 'Texto...'}`}
                   value={shippingAddress[field]}
                   onChange={handleAddressChange}
-                  required={field !== 'apartment'}
+                  required={field !== 'Departamento'}
                 />
               </div>
             ))}
@@ -164,7 +180,8 @@ function CheckoutPage() {
           <div className={styles.summaryRow}><span>IVA (19%):</span><span>{toCLP(taxes)}</span></div>
           <div className={styles.summaryRow}><span>Costo de envío:</span><span>{toCLP(shippingCost)}</span></div>
           <div className={styles.summaryTotalRow}><span>Total a pagar:</span><span>{toCLP(total)}</span></div>
-
+          
+          
           <PayButton idCompra={carritoId} idUsuario={id_cliente} montoTotal={total} shippingAddress={shippingAddress} />
         </div>
       </div>

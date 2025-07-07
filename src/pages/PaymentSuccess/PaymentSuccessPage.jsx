@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import styles from './PaymentSuccess.module.css';
 import axios from 'axios';
 
@@ -8,6 +8,11 @@ function PaymentSuccess() {
   const token = searchParams.get('token');
   const [orderData, setOrderData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  const handleReturn = () => {
+    navigate('/'); 
+  };
 
   useEffect(() => {
     if (token) {
@@ -28,9 +33,7 @@ function PaymentSuccess() {
 
       <section className={styles.section}>
         <h2>Dirección de envío</h2>
-        <p>{orderData.direccion.street} #{orderData.direccion.number}, {orderData.direccion.apartment && `Depto. ${orderData.direccion.apartment}, `}
-        {orderData.direccion.commune}, {orderData.direccion.city}, {orderData.direccion.region}, CP {orderData.direccion.postalCode}</p>
-        {orderData.direccion.notes && <p>Notas: {orderData.direccion.notes}</p>}
+        <p>{orderData.direccion} </p>
       </section>
 
       <section className={styles.section}>
@@ -49,6 +52,9 @@ function PaymentSuccess() {
         <p>Total pagado: <strong>{Number(orderData.total).toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })}</strong></p>
         <p>ID del Pedido: {orderData.id_pedido}</p>
       </section>
+      <button className={styles.retryButton} onClick={handleReturn}>
+        Volver al inicio
+      </button>
     </div>
   );
 }
